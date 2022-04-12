@@ -1,0 +1,12 @@
+.cell__input {
+  border: none;
+  font-family: 'Arial Narrow', 'Arial', sans-serif; 
+  font-style: italic;
+  text-align: center;
+}
+
+
+.cell__input:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}

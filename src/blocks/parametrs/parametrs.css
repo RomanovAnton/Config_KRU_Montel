@@ -1,0 +1,8 @@
+.parametrs {
+  min-width: 342px;
+  font-size: 10px;
+  line-height: 1;
+  border-collapse: collapse;
+  border: 1px solid black;
+  height: 200px;                /* для ограничения высоты с */
+}

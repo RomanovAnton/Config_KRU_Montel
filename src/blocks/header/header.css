@@ -1,0 +1,17 @@
+.header {
+  position: fixed;
+  opacity: 0;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+  max-width: 1280px;
+  min-width: 1279px;
+  z-index: 3;
+  transition: .3s;
+}
+
+.header:hover {
+  opacity: 1;
+}

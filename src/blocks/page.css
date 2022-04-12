@@ -1,0 +1,8 @@
+.page {
+  position: relative;
+  margin: auto;
+  display: flex;
+  font-family: 'Arial Narrow', 'Arial', sans-serif; 
+  font-style: italic;
+  max-width: 1430px;
+}
