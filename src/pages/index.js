@@ -1,16 +1,22 @@
+import { Column } from '../components/Column/Column.js';
+import { addButtonOL } from '../utils/constant.js';
+
+
 let select = function () {
   let selectHeader = document.querySelectorAll('.select__header');
   let selectItem = document.querySelectorAll('.select__item');
+
 
   selectHeader.forEach(item => {
     item.addEventListener('click', selectToggle)
   });
 
   selectItem.forEach(item => {
-    item.addEventListener('click', selectChoose)
+    item.addEventListener('click', (evt) => selectChoose(evt))
   });
 
   function selectToggle() {
+    console.log(this.parentElement)
     this.parentElement.classList.toggle('is-active');
   }
 
@@ -34,16 +40,15 @@ let select = function () {
   }
 
 
-  function selectChoose() {
+  function selectChoose(evt) {
 
-    let text = this.innerText,
-      select = this.closest('.select'),
-      column = this.closest('.column-OL')
-    countTT = column.querySelector('.countTT')
-
-    powerWindingTT = column.querySelector('.powerWindingTT')
-
-    currentText = select.querySelector('.select__current');
+    let text = evt.target.innerText,
+      select = evt.target.closest('.select'),
+      column = evt.target.closest('.column-OL'),
+      countTT = column.querySelector('.countTT'),
+      powerWindingTT = column.querySelector('.powerWindingTT'),
+      currentText = select.querySelector('.select__current');
+      
     currentText.innerText = text;
     select.classList.remove('is-active');
 
@@ -68,12 +73,21 @@ let select = function () {
         column.querySelector('.schema_TT_00').remove()
         break
     }
-
-
   }
+
+
 
 };
 
 
-select();
+
+// --------------------------------------------------------------------------------------
+
+const OLcolumn = new Column()
+addButtonOL.addEventListener('click', () => {
+  OLcolumn.addColumn(OLcolumn.getTemplate('template-column-OL', 'column-OL'))
+  select()
+})
+
+
 
