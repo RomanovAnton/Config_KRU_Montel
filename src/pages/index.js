@@ -8,16 +8,16 @@ let select = function () {
 
 
   selectHeader.forEach(item => {
-    item.addEventListener('click', selectToggle)
+    item.addEventListener('click', (evt) => selectToggle(evt))
   });
 
   selectItem.forEach(item => {
     item.addEventListener('click', (evt) => selectChoose(evt))
   });
 
-  function selectToggle() {
-    console.log(this.parentElement)
-    this.parentElement.classList.toggle('is-active');
+  function selectToggle(evt) {
+    console.log(evt.target.closest('.select'))
+    evt.target.closest('.select').classList.add('is-active');
   }
 
   // удаление элемента для того чтобы не было наслоения одинаковых элементов друг на друга
@@ -48,7 +48,7 @@ let select = function () {
       countTT = column.querySelector('.countTT'),
       powerWindingTT = column.querySelector('.powerWindingTT'),
       currentText = select.querySelector('.select__current');
-      
+
     currentText.innerText = text;
     select.classList.remove('is-active');
 
