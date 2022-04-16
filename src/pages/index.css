@@ -27,3 +27,5 @@
 /*schema */
 @import url(../blocks/schema/__ТТ-image.css/schema__ТТ-image.css);
 @import url(../blocks/schema/__ТТ-image.css/schema_TT_00.css);
+@import url(../blocks/schema/__copyButton/schema__copyButton.css);
+@import url(../blocks/schema/__deleteButton/schema__deleteButton.css);

@@ -1,97 +1,92 @@
 import { container } from '../../utils/constant.js'
 export class Column {
-  constructor() {
-    
-    
-
-    // this._selectHeader = document.querySelectorAll('.select__header');
-    // this._selectItem = document.querySelectorAll('.select__item');
+  constructor(foo) {
     this._container = container
-
+    this._select = foo
   }
 
   addColumn() {
     this._container.append(this._column)
+    this._select.foo()
   }
 
+  // setEventListeners(buttonDeleteColumn, buttonCopyColumn, column, templateSelector, columnSelector) {
+  //   buttonDeleteColumn.addEventListener('click', () => {
+  //     column.remove()
+  //   })
+  //   buttonCopyColumn.addEventListener('click', () => {
+  //     const newColumn = column.cloneNode(true)
+  //     this._container.append(newColumn)
+  //     this._select.foo()
+  //     this.setEventListeners2()
+
+  // сбор значений текущей колонны
+  // const valueArr = Array.from(column.querySelectorAll('.select__current'))
+  // let valueCells = []
+  // for (let i = 0; i < valueArr.length; i++) {
+  //   if (valueArr[i].textContent) {
+  //     valueCells.push(valueArr[i].textContent)
+  //   } else {
+  //     valueCells.push(valueArr[i].value)
+  //   }
+
+  // }
+
+  // клонирование колонны
+  // const newColumn = this.getTemplate(templateSelector, columnSelector)
+  // this._container.append(newColumn)
+  // this._select.foo()
+
+  // const valueNewArr = Array.from(newColumn.querySelectorAll('.select__current'))
+
+  // for (let i = 0; i < valueNewArr.length; i++) {
+
+
+  //  valueNewArr[i].textContent = valueCells[i]
+
+  // if (valueNewArr[i].textContent) {
+  //   valueNewArr[i].textContent = valueCells[i].textContent
+  // } else {
+  //   valueNewArr[i].value = valueCells[i].value
+  // }
+
+  //   }
+
+
+  //  })
+
+  // }
+
   getTemplate(templateSelector, columnSelector) {
+    this._templateSelector = templateSelector
+    this._columnSelector = columnSelector
     this._column = document.querySelector(`.${templateSelector}`)
       .content
       .querySelector(`.${columnSelector}`)
       .cloneNode(true)
+
+    this._buttonCopyColumn = this._column.querySelector('.schema__copyButton')
+    this._buttonDeleteColumn = this._column.querySelector('.schema__deleteButton')
+
+    this._select.foo()
+
+    // this.setEventListeners(this._buttonDeleteColumn, this._buttonCopyColumn, this._column,
+    // this._templateSelector, this._columnSelector)
+
+   
+   
     return this._column
   }
 
-  // _setEventListeners() {
-  //   console.log(this._column)
-  //   this._selectHeader.forEach(item => { item.addEventListener('click', console.log('ok')) });
-  //   this._selectItem.forEach(item => { item.addEventListener('click', console.log('ok') )});
-  // }
 
-  // _selectToggle() {
-  //   console.log(this.parentElement)
-  //   this.parentElement.classList.toggle('is-active');
-  // }
+  setEventListeners2() {
+    let copyBTN = document.querySelectorAll('.schema__copyButton')
+    copyBTN.forEach((item) => item.addEventListener('click', (evt) => {
+      const newColumn = evt.target.closest('.column-OL').cloneNode(true)
+      this._container.append(newColumn)
+      this._select.foo()
+    }))
+  }
 
-// удаление элемента для того чтобы не было наслоения одинаковых элементов друг на друга
-// addElement(container, element) {
-//   const elementName = element.className
-//   const activElement = container.querySelector(`.${elementName}`)
-//   if (container.contains(activElement)) {
-//     activElement.remove()
-//   }
-//   container.append(element)
-// }
-
-
-
-// function loadElementImage(url, imageStyle) {
-//   const img = document.createElement('img');
-//   img.src = url;
-//   img.classList.add(imageStyle)
-//   return img;
-// }
-
-
-// _selectChoose() {
-
-//   let text = this.innerText,
-//     select = this.closest('.select'),
-//     column = this.closest('.column-OL')
-//   // console.log(column)
-
-//   countTT = column.querySelector('.countTT')
-//   // console.log(countTT)
-//   powerWindingTT = column.querySelector('.powerWindingTT')
-
-//   currentText = select.querySelector('.select__current');
-//   currentText.innerText = text;
-//   select.classList.remove('is-active');
-
-
-
-  //   switch (currentText.innerText) {
-  //     case '0,5s / 0,5 / 10p':
-  //       addElement(column, loadElementImage('./images/ТТ_3_3.png', 'schema__ТТ-image'))
-  //       powerWindingTT.value = '10 / 10 / 15'
-  //       break
-  //     case '0,5s / 10p':
-  //       addElement(column, loadElementImage('./images/ТТ_3_2.png', 'schema__ТТ-image'))
-  //       powerWindingTT.value = '10 / 15'
-  //       break
-  //   }
-
-  //   switch (countTT.innerText) {
-  //     case '2':
-  //       addElement(column, loadElementImage('./images/ТТ_0_0.png', 'schema_TT_00'))
-  //       break
-  //     case '3':
-  //       column.querySelector('.schema_TT_00').remove()
-  //       break
-  //   }
-  // }
-
-  
-
-//}
 }
+

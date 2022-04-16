@@ -1,0 +1,13 @@
+.schema__copyButton {
+  width: 20px;
+  height: 20px;
+  top: 191px;
+  left: 92px;
+  position: absolute;
+  opacity: 0;
+  transition: .2s;
+}
+
+.schema__copyButton:hover {
+  opacity: 1;
+  }

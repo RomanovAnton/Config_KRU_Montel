@@ -1,5 +1,8 @@
 import { Column } from '../components/Column/Column.js';
-import { addButtonOL } from '../utils/constant.js';
+import { container } from '../utils/constant.js'
+import {
+  buttonAddOL,
+} from '../utils/constant.js';
 
 
 let select = function () {
@@ -16,7 +19,6 @@ let select = function () {
   });
 
   function selectToggle(evt) {
-    console.log(evt.target.closest('.select'))
     evt.target.closest('.select').classList.add('is-active');
   }
 
@@ -75,19 +77,41 @@ let select = function () {
     }
   }
 
-
-
 };
 
 
 
 // --------------------------------------------------------------------------------------
-
-const OLcolumn = new Column()
-addButtonOL.addEventListener('click', () => {
-  OLcolumn.addColumn(OLcolumn.getTemplate('template-column-OL', 'column-OL'))
-  select()
+const Columns = new Column({
+  foo: select
 })
 
+// function setEventListener () {
+//   buttonCopyColumn.addEventListener('click', (evt) => {
+//     let copyElement = evt.target.closest('.column-OL');
+//     Columns.addColumn(copyElement);
+//     select()
+//   })
+// }
+
+
+buttonAddOL.addEventListener('click', () => {
+  Columns.addColumn(Columns.getTemplate('template-column-OL', 'column-OL'))
+})
+
+
+
+
+
+
+let observer = new MutationObserver(mutationRecords => {
+  console.log('добавлен элемент'); // console.log(изменения)
+  Columns.setEventListeners2()
+});
+
+// наблюдать за всем, кроме атрибутов
+observer.observe(container, {
+  childList: true, // наблюдать за непосредственными детьми
+});
 
 

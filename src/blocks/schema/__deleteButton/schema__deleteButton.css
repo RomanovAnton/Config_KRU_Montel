@@ -1,0 +1,13 @@
+.schema__deleteButton {
+  width: 18px;
+  height: 18px;
+  top: 164px;
+  left: 93px;
+  position: absolute;
+  opacity: 0;
+  transition: .2s;
+}
+
+.schema__deleteButton:hover {
+  opacity: 1;
+}
