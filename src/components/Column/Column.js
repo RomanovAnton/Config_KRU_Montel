@@ -1,24 +1,12 @@
 import { container } from '../../utils/constant.js'
 export class Column {
-  constructor(foo) {
+  constructor() {
     this._container = container
-    this._select = foo
   }
 
-  addColumn() {
-    this._container.append(this._column)
-    this._select.foo()
+  addColumn(column) {
+    this._container.append(column)
   }
-
-  // setEventListeners(column) {
-  //   let copyBTN = column.querySelector('.schema__copyButton')
-  //   copyBTN.addEventListener('click', (evt) => {
-  //     const newColumn = evt.target.closest('.column-OL').cloneNode(true)
-  //     this._container.append(newColumn)
-  //     this._select.foo()
-  //   })
-  // }
-
 
   getTemplate(templateSelector, columnSelector) {
     this._templateSelector = templateSelector
@@ -27,9 +15,6 @@ export class Column {
       .content
       .querySelector(`.${columnSelector}`)
       .cloneNode(true)
-
-    // this.setEventListeners(this._column)
-    this._select.foo()
 
     return this._column
   }

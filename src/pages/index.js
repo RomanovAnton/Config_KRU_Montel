@@ -80,63 +80,37 @@ let select = function () {
 };
 
 
-
 // --------------------------------------------------------------------------------------
-const Columns = new Column({
-  foo: select
-})
-
-// function setEventListener () {
-//   buttonCopyColumn.addEventListener('click', (evt) => {
-//     let copyElement = evt.target.closest('.column-OL');
-//     Columns.addColumn(copyElement);
-//     select()
-//   })
-// }
-
+const Columns = new Column()
 
 buttonAddOL.addEventListener('click', () => {
   Columns.addColumn(Columns.getTemplate('template-column-OL', 'column-OL'))
+  select()
 })
 
-
-
-
-
-
+// слушатель на изменение количества DOM элементов в контейнере
 let observer = new MutationObserver(mutationRecords => {
+  console.log(mutationRecords)
   let currentColumn = mutationRecords[0].addedNodes[0]
   console.log(currentColumn)
 
-  let copyBtn = currentColumn.querySelector('.schema__copyButton')
-  copyBtn.addEventListener('click', () => {
-    let newColumn = currentColumn.cloneNode(true)
-    container.append(newColumn)
-    select()
-  })
-  // copyBtn.forEach((item) => {
+  // слушатель на клонирование
+  if (mutationRecords[0].addedNodes[0]) {
+    let copyButton = currentColumn.querySelector('.schema__copyButton')
+    copyButton.addEventListener('click', () => {
+      let newColumn = currentColumn.cloneNode(true)
+      container.append(newColumn)
+      select()
+    })
+    // слушатель на удаление
+    let deleteButton = currentColumn.querySelector('.schema__deleteButton')
+    deleteButton.addEventListener('click', () => {
+      currentColumn.remove()
+    })
+  }
 
-
-  //   item.addEventListener('click', (evt) => {
-  //     const newColumn = evt.target.closest('.column-OL').cloneNode(true)
-  //     container.append(newColumn)
-  //     select()
-  //   })
-  // })
-
-
-
-
-  // let newColumn = mutationRecords[0].addedNodes[0].cloneNode(true)// DOM добавленной колонны
-  // let copyBTN = newColumn.querySelector('.schema__copyButton')
-  // copyBTN.addEventListener('click', () => {
-  //   console.log('fsfs')
-  //   // container.append(newColumn)
-  //   // select()
-
-  // })
 })
-// наблюдать за всем, кроме атрибутов
+
 observer.observe(container, {
   childList: true, // наблюдать за непосредственными детьми
 });
