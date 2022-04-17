@@ -105,10 +105,37 @@ buttonAddOL.addEventListener('click', () => {
 
 
 let observer = new MutationObserver(mutationRecords => {
-  console.log('добавлен элемент'); // console.log(изменения)
-  Columns.setEventListeners2()
-});
+  let currentColumn = mutationRecords[0].addedNodes[0]
+  console.log(currentColumn)
 
+  let copyBtn = currentColumn.querySelector('.schema__copyButton')
+  copyBtn.addEventListener('click', () => {
+    let newColumn = currentColumn.cloneNode(true)
+    container.append(newColumn)
+    select()
+  })
+  // copyBtn.forEach((item) => {
+
+
+  //   item.addEventListener('click', (evt) => {
+  //     const newColumn = evt.target.closest('.column-OL').cloneNode(true)
+  //     container.append(newColumn)
+  //     select()
+  //   })
+  // })
+
+
+
+
+  // let newColumn = mutationRecords[0].addedNodes[0].cloneNode(true)// DOM добавленной колонны
+  // let copyBTN = newColumn.querySelector('.schema__copyButton')
+  // copyBTN.addEventListener('click', () => {
+  //   console.log('fsfs')
+  //   // container.append(newColumn)
+  //   // select()
+
+  // })
+})
 // наблюдать за всем, кроме атрибутов
 observer.observe(container, {
   childList: true, // наблюдать за непосредственными детьми
